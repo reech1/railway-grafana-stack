@@ -1,18 +1,17 @@
 global:
-  scrape_interval: 15s # Default scrape interval
+  scrape_interval: 15s
 
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
 
-   - job_name: 'postgres'
+  - job_name: 'postgres'
     static_configs:
       - targets: ['postgres-exporter.railway.internal:9187']
         labels:
           service: 'postgres'
           project: 'n8n'
-    # Monitors your database
 
   - job_name: 'redis'
     static_configs:
@@ -20,4 +19,3 @@ scrape_configs:
         labels:
           service: 'redis'
           project: 'n8n'
-    # Monitors your queue
