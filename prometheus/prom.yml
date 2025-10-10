@@ -6,16 +6,18 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  # - job_name: 'example_api'
-  #   scheme: http
-  #   static_configs:
-  #     - targets: ['example_api:9091']
+   - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter.railway.internal:9187']
+        labels:
+          service: 'postgres'
+          project: 'n8n'
+    # Monitors your database
 
-  #  ? TODO: add your services here
-  # - job_name: 'your-job-name'
-  #   scheme: https
-  #   static_configs:
-  #     - targets: ['URL_GOES_HERE']
-  #   basic_auth:
-  #     username: HTTP_AUTH_USERNAME_GOES_HERE
-  #     password: HTTP_AUTH_PASSWORD_GOES_HERE
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter.railway.internal:9121']
+        labels:
+          service: 'redis'
+          project: 'n8n'
+    # Monitors your queue
