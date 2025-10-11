@@ -6,16 +6,30 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'postgres'
+  - job_name: 'n8n-primary'
     static_configs:
-      - targets: ['postgres-exporter.railway.internal:9187']
+      - targets: ['primary.railway.internal:5678']
         labels:
-          service: 'postgres'
-          project: 'n8n'
+          service: 'n8n'
+          instance: 'primary'
 
-  - job_name: 'redis'
+  - job_name: 'n8n-worker'
     static_configs:
-      - targets: ['redis-exporter.railway.internal:9121']
+      - targets: ['worker.railway.internal:5678']
         labels:
-          service: 'redis'
-          project: 'n8n'
+          service: 'n8n'
+          instance: 'worker'
+
+  - job_name: 'n8n-worker-2'
+    static_configs:
+      - targets: ['worker-2.railway.internal:5678']
+        labels:
+          service: 'n8n'
+          instance: 'worker-2'
+
+  - job_name: 'n8n-webhook-processor'
+    static_configs:
+      - targets: ['webhook-processor.railway.internal:5678']
+        labels:
+          service: 'n8n'
+          instance: 'webhook-processor'
