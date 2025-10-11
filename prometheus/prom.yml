@@ -8,41 +8,41 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   - job_name: 'n8n-primary'
+    scheme: https
+    metrics_path: '/metrics'
     static_configs:
       - targets: ['n8n.reech.co:443']
-    scheme: https
-    metrics_path: '/metrics'
-    labels:
-      service: 'n8n'
-      instance: 'primary'
-      environment: 'production'
+        labels:
+          service: 'n8n'
+          instance: 'primary'
+          environment: 'production'
 
   - job_name: 'n8n-worker'
+    scheme: https
+    metrics_path: '/metrics'
     static_configs:
       - targets: ['worker-production-48db.up.railway.app:443']
-    scheme: https
-    metrics_path: '/metrics'
-    labels:
-      service: 'n8n'
-      instance: 'worker'
-      environment: 'production'
+        labels:
+          service: 'n8n'
+          instance: 'worker'
+          environment: 'production'
 
   - job_name: 'n8n-worker-2'
+    scheme: https
+    metrics_path: '/metrics'
     static_configs:
       - targets: ['worker-2-production-f42c.up.railway.app:443']
-    scheme: https
-    metrics_path: '/metrics'
-    labels:
-      service: 'n8n'
-      instance: 'worker-2'
-      environment: 'production'
+        labels:
+          service: 'n8n'
+          instance: 'worker-2'
+          environment: 'production'
 
   - job_name: 'n8n-webhook-processor'
-    static_configs:
-      - targets: ['webhook-processor-production-61a4.up.railway.app:443']
     scheme: https
     metrics_path: '/metrics'
-    labels:
-      service: 'n8n'
-      instance: 'webhook-processor'
-      environment: 'production'
+    static_configs:
+      - targets: ['webhook-processor-production-61a4.up.railway.app:443']
+        labels:
+          service: 'n8n'
+          instance: 'webhook-processor'
+          environment: 'production'
