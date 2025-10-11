@@ -1,5 +1,6 @@
 global:
   scrape_interval: 15s
+  scrape_timeout: 10s
 
 scrape_configs:
   - job_name: 'prometheus'
@@ -8,28 +9,40 @@ scrape_configs:
 
   - job_name: 'n8n-primary'
     static_configs:
-      - targets: ['primary.railway.internal:5678']
-        labels:
-          service: 'n8n'
-          instance: 'primary'
+      - targets: ['n8n.reech.co:443']
+    scheme: https
+    metrics_path: '/metrics'
+    labels:
+      service: 'n8n'
+      instance: 'primary'
+      environment: 'production'
 
   - job_name: 'n8n-worker'
     static_configs:
-      - targets: ['worker.railway.internal:5678']
-        labels:
-          service: 'n8n'
-          instance: 'worker'
+      - targets: ['worker-production-48db.up.railway.app:443']
+    scheme: https
+    metrics_path: '/metrics'
+    labels:
+      service: 'n8n'
+      instance: 'worker'
+      environment: 'production'
 
   - job_name: 'n8n-worker-2'
     static_configs:
-      - targets: ['worker-copy.railway.internal:5678']
-        labels:
-          service: 'n8n'
-          instance: 'worker-2'
+      - targets: ['worker-2-production-f42c.up.railway.app:443']
+    scheme: https
+    metrics_path: '/metrics'
+    labels:
+      service: 'n8n'
+      instance: 'worker-2'
+      environment: 'production'
 
   - job_name: 'n8n-webhook-processor'
     static_configs:
-      - targets: ['webhook-processor.railway.internal:5678']
-        labels:
-          service: 'n8n'
-          instance: 'webhook-processor'
+      - targets: ['webhook-processor-production-61a4.up.railway.app:443']
+    scheme: https
+    metrics_path: '/metrics'
+    labels:
+      service: 'n8n'
+      instance: 'webhook-processor'
+      environment: 'production'
