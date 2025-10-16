@@ -45,7 +45,7 @@ scrape_configs:
     scheme: http
     metrics_path: '/metrics'
     static_configs:
-      - targets: ['zealous-liberation.railway.internal:9187']
+      - targets: ['postgres-exporter.railway.internal:9187']
         labels:
           service: 'postgres'
           instance: 'n8n-db'
